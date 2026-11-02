@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to use Backstory</title>
+<meta name="description" content="A plain-language guide to Backstory: bring in what you're curious about, read the reading list, use the guide, save readings, and go deeper with Gemini.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/backstory.css">
+<style>
+  .guide-doc { max-width: 760px; margin: 0 auto; padding: 32px 20px 80px; }
+  .guide-doc h1 { font-size: 40px; margin: 8px 0 6px; }
+  .guide-doc h2 { font-size: 26px; margin: 40px 0 10px; padding-top: 18px; border-top: 1px solid var(--rule); }
+  .guide-doc h3 { font-size: 19px; margin: 22px 0 6px; }
+  .guide-doc p, .guide-doc li { max-width: 68ch; }
+  .guide-doc li { margin-bottom: 6px; }
+  .toc { background: var(--sheet); border: 1px solid var(--rule); border-radius: 8px; padding: 14px 22px; }
+  .toc ol { margin: 6px 0 0; padding-left: 20px; columns: 2; column-gap: 30px; }
+  .sample { background: var(--sheet); border: 1px solid var(--rule); border-radius: 8px; padding: 6px 20px; margin: 14px 0; }
+  .sample .item { border: 0; }
+  .callout { background: var(--tint); border-radius: 6px; padding: 12px 16px; margin: 14px 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 15px; margin: 10px 0; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { color: var(--ink-2); font-weight: 600; }
+  .back { font-size: 14.5px; }
+  @media (max-width: 600px) { .toc ol { columns: 1; } .guide-doc h1 { font-size: 32px; } }
+  @media print { .back, .toc { display: none; } .guide-doc { padding: 0; } }
+</style>
+</head>
+<body>
+<main class="guide-doc">
+  <p class="back"><a href="../index.html">← Back to Backstory</a></p>
+  <p class="brand-tag">How to use</p>
+  <h1>Backstory</h1>
+  <p class="lede">You saw something in the news, on social media, or in pop culture and want to know what's really behind it. Backstory finds the history and ideas underneath it and gives you a ranked list of real books, articles, and journals to read next.</p>
+
+  <nav class="toc" aria-label="On this page">
+    <b>On this page</b>
+    <ol>
+      <li><a href="#start">Bring it in</a></li>
+      <li><a href="#words">Check the search words</a></li>
+      <li><a href="#brief">Read the backstory in brief</a></li>
+      <li><a href="#list">Read the reading list</a></li>
+      <li><a href="#guide">Ask the guide</a></li>
+      <li><a href="#save">Folders and your library</a></li>
+      <li><a href="#deeper">Go deeper with Gemini</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#tips">Tips and limits</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="start">1. Bring it in</h2>
+  <p>At the top of the page, choose how you want to bring in what you're curious about:</p>
+  <table>
+    <tr><th>Type a topic</th><td>A few words, a name, an event, or a question. <i>"Mining massacre in Central Africa"</i> or <i>"Why does everyone keep quoting 1984?"</i></td></tr>
+    <tr><th>Paste text</th><td>Copy the article, post, or passage and paste it in. Best for long news stories.</td></tr>
+    <tr><th>Upload a file</th><td>A PDF, Word (.docx), or text file. It's read in your browser and never uploaded.</td></tr>
+    <tr><th>Paste a link</th><td>Most news sites don't let other web pages read them, so Backstory reads the words in the link's address (a lot of news links contain the headline). Wikipedia links are read in full. If the results look thin, paste the article's text instead.</td></tr>
+  </table>
+  <p>Add a <b>focus</b> if you want one, like <i>who profits</i>, <i>what the law says</i>, or <i>how it started</i>. Readings that speak to your focus move up the list.</p>
+  <p>Pick a <b>folder</b> to save the topic in, then press <b>Find the backstory</b>.</p>
+
+  <h2 id="words">2. Check the search words</h2>
+  <p>Backstory picks search words from what you brought in. From pasted text it looks for names, places, and phrases that repeat. You can see every word it will search. Remove any that are off (press ×) and add your own.</p>
+  <div class="callout">Good search words are names of things: events, places, ideas, laws, people. <i>"Kimberley Process"</i> works better than <i>"diamond rules."</i> Two to four words is usually best.</div>
+
+  <h2 id="brief">3. Read the backstory in brief</h2>
+  <p>Section 2 shows <b>the idea underneath it</b>: a short summary from Wikipedia, quoted word for word with a link. Wikipedia is a good first stop, not the last one. Check the sources at the bottom of the full article.</p>
+  <p>Below it, <b>angles in your story</b> shows which kinds of history help explain it: history, politics and power, economics and trade, ethics and human rights, law and policy, society and media, science and environment. The number is Jev's yes-chance for each one. The darker chips are the angles over 50%.</p>
+
+  <h2 id="list">4. Read the reading list</h2>
+  <p>Section 3 starts with a short <b>reading path</b>:</p>
+  <ul>
+    <li><b>Start here.</b> Readings written for general readers.</li>
+    <li><b>Go deeper.</b> Academic readings for after you know the basics.</li>
+    <li><b>From every angle.</b> One reading for each angle in your story, so you don't only hear one side of it.</li>
+  </ul>
+  <p>Then the <b>full list</b>, ranked. Use the buttons above it to show only books, only articles, only free readings, or one angle. Each reading looks like this:</p>
+  <div class="sample"><ol class="ranked"><li class="item"><span class="num">1</span><div class="item-main">
+    <h3><a href="https://openlibrary.org/works/OL77384W" target="_blank" rel="noopener">Blood Diamonds</a></h3>
+    <p class="meta">Greg Campbell · 2002 · 251 pages</p>
+    <p class="tags"><span class="tag kind">Book</span><span class="tag angle a-money">Economics &amp; trade</span><span class="tag level">Accessible</span><span class="tag">Firsthand</span></p>
+    <p class="why">Jev: directly explains the background (2.7 of 3). Written for readers with a little background. Speaks to your focus, “who profits”. A firsthand account. 10 editions in print over the years.</p>
+    <p class="where"><span class="field inline">Where to get it:</span> <a href="https://openlibrary.org/works/OL77384W" target="_blank" rel="noopener">Find it in a library</a> · Open Library · WorldCat <span class="src">via Open Library</span></p>
+  </div></li></ol></div>
+  <p class="hint">An example of how a reading looks. The numbers are made up for this guide.</p>
+  <table>
+    <tr><th>Tags</th><td>What kind of reading it is, its main angle, its reading level (Intro, Accessible, Academic, Specialist), and three flags: <b>One side</b> (it argues a position, so read it next to something from another angle), <b>Firsthand</b> (journalism, memoir, or testimony), and <b>Free</b>.</td></tr>
+    <tr><th>The "why" line</th><td>Written by rules from Jev's numbers and the catalog. "2.7 of 3" is how related Jev thinks it is.</td></tr>
+    <tr><th>Where to get it</th><td>Open-access readings link straight to a free copy. Open Library books can sometimes be borrowed free online with an Open Library account. Everything else links to WorldCat (find it in a library near you) or the publisher's page through its DOI. Your campus library can usually get a DOI article for you.</td></tr>
+    <tr><th>What the catalog says</th><td>The abstract, first sentence, or subjects, straight from the catalog.</td></tr>
+    <tr><th>Jev's numbers</th><td>Every question Jev was asked about this reading and every answer it gave.</td></tr>
+  </table>
+  <p>At the bottom, <b>Probably off-topic</b> holds readings Jev scored as unrelated. They're hidden, not deleted, in case Jev got one wrong.</p>
+
+  <h2 id="guide">5. Ask the guide</h2>
+  <p>The little librarian in the bottom-right corner is the <b>guide</b>. A red dot means it has something for you. Click it for the short version:</p>
+  <ul>
+    <li>what your topic is about, in one sentence,</li>
+    <li>why it's bigger than one story,</li>
+    <li>what to read if you have <b>10 minutes</b>, <b>an evening</b>, or <b>a few weeks</b>,</li>
+    <li>and one thing to keep in mind, like an angle that's missing from the list.</li>
+  </ul>
+  <p>The guide doesn't make anything up. Each line is filled in from the catalogs and Jev's numbers. Press <kbd>Esc</kbd> or × to close it.</p>
+
+  <h2 id="save">6. Folders and your library</h2>
+  <p><b>Folders</b> (on the left, or under the <b>Folders</b> button on a phone) keep your topics organized, like <i>Labor history</i> or <i>Things from TikTok</i>. Every search is saved in the folder you picked. Click a topic to see its list again. Use ⋯ to rename or delete a folder.</p>
+  <p>Press <b>Save to library</b> on any reading to keep it. <b>My library</b> (at the top) sorts your saved readings into <b>To read</b>, <b>Reading</b>, and <b>Finished</b>. Each one has a note box for what it taught you. <b>Copy reading list</b> copies everything, with links and notes, so you can paste it into a document.</p>
+  <div class="callout">Your folders, library, and notes are saved in this browser on this device only. Backstory has no accounts and collects nothing. Clearing your browser's data erases them, so copy your reading list now and then.</div>
+
+  <h2 id="deeper">7. Go deeper with Gemini</h2>
+  <p>Nothing in sections 1 to 3 is written by a chatbot. If you want the ideas explained in more depth, section 4 builds a <b>Backstory packet</b>: your topic, the background, and your ranked reading list with links. Take it to Gemini with the <b>Backstory Guide</b> skill:</p>
+  <ol>
+    <li>Once: make a Gem. In Gemini, open <b>Gems → New Gem</b>, name it <i>Backstory Guide</i>, paste the <b>Gem instructions</b> into Instructions, and upload <b>SKILL.md</b> as knowledge. (Both are under <b>See the skill</b>.)</li>
+    <li>Each time: press <b>Copy packet</b> and paste it into the Gem.</li>
+  </ol>
+  <p>No Gem? <b>Copy skill + packet</b> and paste both into a new chat.</p>
+  <p>The skill tells Gemini to explain in plain language, cover every angle, mark what's <i>well established</i> versus <i>debated</i>, and recommend only readings from your list. It can offer moves like <b>Timeline</b>, <b>Key terms</b>, <b>Who's who</b>, <b>Every angle</b>, <b>Reading plan</b>, <b>Claim check</b>, and <b>Then and now</b>. Even so, check anything important against the readings. That's what they're for.</p>
+
+  <h2 id="how">8. How it works</h2>
+  <table>
+    <tr><th>Layer 1: the catalogs</th><td>Wikipedia for background. Open Library for books. OpenAlex for journal articles and scholarly books, with Crossref as a backup. DOAJ for open-access articles. All free and open.</td></tr>
+    <tr><th>Layer 2: Jev</th><td>Jev is an AI model from TypeSafe AI that answers questions with numbers instead of sentences. For each reading, Backstory asks: how related is it, what's its main angle, who is it written for, does it argue one side, is it firsthand, and does it speak to your focus? Rules in the app turn those numbers into the ranking, the tags, and the "why" lines. Turn off <b>Rank with Jev</b> to see the catalogs' own order.</td></tr>
+    <tr><th>Layer 3: Gemini</th><td>Only if you choose to paste a packet. Backstory never sends anything to Gemini.</td></tr>
+  </table>
+  <p><b>What leaves your browser:</b> your search words go to the catalogs. Short catalog entries, plus the start of what you brought in, go to Jev through a proxy that stores nothing. Uploaded files, folders, and your library stay on your device.</p>
+
+  <h2 id="tips">9. Tips and limits</h2>
+  <ul>
+    <li><b>Thin results?</b> Use fewer, more specific search words, or add the name of the bigger idea (<i>"conflict diamonds"</i>, not <i>"mine attack"</i>).</li>
+    <li><b>Missing an angle?</b> The list tells you. Add a search word for that angle, like <i>"law"</i> or <i>"labor"</i>, and search again.</li>
+    <li><b>Very recent news</b> may not have books or articles yet. The background will still help, and the older history usually matters most.</li>
+    <li><b>Jev can be wrong.</b> It reads only titles, subjects, and abstracts, not whole books. Open "Jev's numbers" if a ranking surprises you.</li>
+    <li><b>Catalogs can be messy.</b> Some entries are in other languages, are study guides, or have odd titles. Skip those.</li>
+    <li><b>OpenAlex has a daily limit</b> for apps without a key. If it's busy, Backstory uses Crossref, and the list says so.</li>
+  </ul>
+
+  <p class="hint" style="margin-top:40px">Backstory is a Grove Lab student build. Idea and design direction by Caitlin Hereford (PPL and Rhetoric, Senior, WRIT 3810). Prototype built with Marc Watkins using Anthropic's Claude.</p>
+</main>
+</body>
+</html>

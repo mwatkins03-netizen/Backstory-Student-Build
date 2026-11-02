@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Backstory</title>
+<meta name="description" content="Backstory: bring in a headline, a post, or an idea, and find the books, articles, and journals that explain what came before. A Grove Lab student build by Caitlin Hereford.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/backstory.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<header class="top">
+  <button class="btn ghost only-narrow" id="btnDrawer" aria-controls="side" aria-expanded="false">Folders</button>
+  <a class="brand" href="./" aria-label="Backstory home">
+    <span class="brand-name">Backstory</span>
+    <span class="brand-tag">The reading behind the headlines</span>
+  </a>
+  <nav class="top-nav" aria-label="Site">
+    <button class="link" id="navSearch" aria-current="page">Search</button>
+    <button class="link" id="navLibrary">My library <span class="count" id="libCount">0</span></button>
+    <a class="link" href="how-to-use/index.html">How to use</a>
+    <button class="link" id="navCredits">Sources</button>
+  </nav>
+</header>
+
+<div class="shell">
+  <!-- ========== FOLDERS ========== -->
+  <aside class="side" id="side" aria-label="Your folders">
+    <div class="side-head">
+      <h2>Folders</h2>
+      <button class="btn small ghost" id="btnNewFolder">New folder</button>
+    </div>
+    <form class="new-folder" id="newFolderForm" hidden>
+      <label class="sr" for="newFolderName">Folder name</label>
+      <input id="newFolderName" maxlength="60" placeholder="e.g. Labor history" autocomplete="off">
+      <button class="btn small" type="submit">Add</button>
+    </form>
+    <ul class="folders" id="folders"></ul>
+    <p class="side-note">Folders and your library are saved in this browser only. Backstory doesn't collect anything.</p>
+  </aside>
+
+  <main id="main" tabindex="-1">
+    <!-- ========== SEARCH VIEW ========== -->
+    <section id="viewSearch" aria-labelledby="askTitle">
+      <div class="panel ask">
+        <h1 id="askTitle"><span class="step">1</span> What are you curious about?</h1>
+        <p class="lede">Bring in a headline, a post, an idea, or a theory. Backstory looks for the history and ideas behind it, then ranks real books, articles, and journals to read next.</p>
+
+        <div class="modes" role="tablist" aria-label="How to bring it in">
+          <button role="tab" aria-selected="true" aria-controls="modeTopic" id="tabTopic" data-mode="topic">Type a topic</button>
+          <button role="tab" aria-selected="false" aria-controls="modeText" id="tabText" data-mode="text">Paste text</button>
+          <button role="tab" aria-selected="false" aria-controls="modeFile" id="tabFile" data-mode="file">Upload a file</button>
+          <button role="tab" aria-selected="false" aria-controls="modeLink" id="tabLink" data-mode="link">Paste a link</button>
+        </div>
+
+        <div class="mode" id="modeTopic" role="tabpanel" aria-labelledby="tabTopic">
+          <label class="field" for="inTopic">Topic, event, idea, or question</label>
+          <input id="inTopic" maxlength="200" placeholder="e.g. mining massacre in Central Africa" autocomplete="off">
+          <p class="examples">Try one:
+            <button class="chip ex" data-ex="0">A mining massacre in Central Africa</button>
+            <button class="chip ex" data-ex="1">Why does everyone keep quoting 1984?</button>
+            <button class="chip ex" data-ex="2">Tariffs and trade wars</button>
+          </p>
+        </div>
+        <div class="mode" id="modeText" role="tabpanel" aria-labelledby="tabText" hidden>
+          <label class="field" for="inText">Paste the article, post, or passage</label>
+          <textarea id="inText" rows="7" placeholder="Paste the text here. Only the words are used; nothing is saved outside this browser."></textarea>
+        </div>
+        <div class="mode" id="modeFile" role="tabpanel" aria-labelledby="tabFile" hidden>
+          <div class="drop" id="dropZone">
+            <p><b>Drop a PDF, Word (.docx), or text file here</b>, or</p>
+            <label class="btn ghost" for="fileIn">Choose a file</label>
+            <input type="file" id="fileIn" accept=".pdf,.docx,.txt,.md,application/pdf,text/plain" class="sr">
+            <p class="hint">The file is read in your browser. It isn't uploaded anywhere.</p>
+          </div>
+          <p class="msg" id="fileMsg" role="status"></p>
+        </div>
+        <div class="mode" id="modeLink" role="tabpanel" aria-labelledby="tabLink" hidden>
+          <label class="field" for="inLink">Link to a news story, post, or page</label>
+          <input id="inLink" type="url" placeholder="https://…" autocomplete="off">
+          <p class="hint">Most news sites don't let other pages read them, so Backstory reads the words in the link's address. Wikipedia links are read in full. For the best results, paste the article's text instead.</p>
+        </div>
+
+        <label class="field" for="inFocus">Anything to focus on? <span class="opt">optional</span></label>
+        <input id="inFocus" maxlength="160" placeholder="e.g. who profits, what the law says, how it started" autocomplete="off">
+
+        <div class="terms-wrap" id="termsWrap" hidden>
+          <p class="field" id="termsLabel">Search words <span class="opt">Backstory picked these from what you brought in. Remove or add any.</span></p>
+          <ul class="terms" id="terms" aria-labelledby="termsLabel"></ul>
+          <form class="add-term" id="addTermForm">
+            <label class="sr" for="addTerm">Add a search word</label>
+            <input id="addTerm" maxlength="60" placeholder="Add a word or phrase" autocomplete="off">
+            <button class="btn small ghost" type="submit">Add</button>
+          </form>
+        </div>
+
+        <div class="ask-foot">
+          <label class="field inline" for="saveFolder">Save to</label>
+          <select id="saveFolder"></select>
+          <label class="toggle"><input type="checkbox" id="useJev" checked> Rank with Jev</label>
+          <button class="btn primary" id="btnGo">Find the backstory</button>
+        </div>
+        <p class="msg" id="askMsg" role="status" aria-live="polite"></p>
+      </div>
+
+      <div id="results" hidden>
+        <div class="progress" id="progress" hidden>
+          <div class="bar"><i></i></div>
+          <p role="status" aria-live="polite"></p>
+        </div>
+
+        <section class="panel brief" aria-labelledby="briefTitle">
+          <h2 id="briefTitle"><span class="step">2</span> The backstory in brief</h2>
+          <div id="brief"></div>
+        </section>
+
+        <section class="panel list" aria-labelledby="listTitle">
+          <div class="list-head">
+            <h2 id="listTitle"><span class="step">3</span> What to read</h2>
+            <p class="list-sub" id="listSub"></p>
+          </div>
+          <div id="path"></div>
+          <div class="filters" role="group" aria-label="Show">
+            <span class="field inline">Full list:</span>
+            <div id="filters"></div>
+          </div>
+          <ol class="ranked" id="ranked"></ol>
+          <details class="offtopic" id="offWrap" hidden>
+            <summary>Probably off-topic (<span id="offCount">0</span>)</summary>
+            <ol class="ranked" id="offList"></ol>
+          </details>
+        </section>
+
+        <section class="panel deeper" aria-labelledby="deeperTitle">
+          <h2 id="deeperTitle"><span class="step">4</span> Want a longer explanation?</h2>
+          <p>Everything above is real catalog data sorted by rules and Jev's numbers. Nothing on this page was written by a chatbot. If you want the ideas explained in more depth, take a <b>Backstory packet</b> to Gemini with the Backstory Guide skill. It's told to explain using only the readings on your list and to say when it isn't sure.</p>
+          <div class="pk-opts">
+            <label class="chk"><input type="checkbox" id="pkText" checked> Include the text I brought in</label>
+            <label class="chk"><input type="checkbox" id="pkNums"> Include Jev's numbers</label>
+          </div>
+          <div class="pk-acts">
+            <button class="btn" id="btnPacket">Copy packet</button>
+            <button class="btn ghost" id="btnSkillPacket">Copy skill + packet</button>
+            <button class="btn ghost" id="btnShowSkill">See the skill</button>
+          </div>
+          <div class="skill-view" id="skillView" hidden>
+            <div class="ms-tabs" role="tablist" aria-label="Skill files">
+              <button role="tab" aria-selected="true" data-file="skill">SKILL.md</button>
+              <button role="tab" aria-selected="false" data-file="gem">Gem instructions</button>
+              <button role="tab" aria-selected="false" data-file="setup">How to set it up</button>
+              <button role="tab" aria-selected="false" data-file="packet">This packet</button>
+            </div>
+            <pre id="skillBody" tabindex="0"></pre>
+            <p class="hint"><a href="gemini/backstory-guide/SKILL.md" download>Download SKILL.md</a> · <a href="gemini/gem-instructions.md" download>Download Gem instructions</a></p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- ========== LIBRARY VIEW ========== -->
+    <section id="viewLibrary" aria-labelledby="libTitle" hidden>
+      <div class="panel">
+        <div class="list-head">
+          <h1 id="libTitle">My library</h1>
+          <div class="lib-acts">
+            <label class="field inline" for="libFolder">Folder</label>
+            <select id="libFolder"></select>
+            <button class="btn small ghost" id="btnCopyList">Copy reading list</button>
+          </div>
+        </div>
+        <p class="lede">Readings you saved. Mark where you are with each one and keep a note on what it taught you.</p>
+        <div id="libBody"></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- ========== THE GUIDE (agent in the corner) ========== -->
+<button class="guide-btn" id="guideBtn" aria-haspopup="dialog" aria-controls="guidePanel">
+  <span class="guide-fig" id="guideFigBtn" aria-hidden="true"></span>
+  <span class="guide-dot" id="guideDot" hidden></span>
+  <span class="sr" id="guideBtnLabel">Ask the guide for the short version</span>
+</button>
+<section class="guide-panel" id="guidePanel" role="dialog" aria-modal="false" aria-labelledby="guideTitle" hidden>
+  <header>
+    <span class="guide-fig small" aria-hidden="true" id="guideFigPanel"></span>
+    <div>
+      <h2 id="guideTitle"></h2>
+      <p class="guide-role" id="guideRole"></p>
+    </div>
+    <button class="x" id="guideClose" aria-label="Close">×</button>
+  </header>
+  <div class="guide-body" id="guideBody"></div>
+</section>
+
+<!-- ========== SOURCES & CREDITS ========== -->
+<dialog id="dlgCredits" aria-labelledby="credTitle">
+  <h2 id="credTitle">Where Backstory's information comes from</h2>
+  <dl class="cred">
+    <dt>Wikipedia</dt><dd>The short background summaries, quoted with a link to the full article. Text is shared under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>.</dd>
+    <dt>Open Library</dt><dd>Books, from the Internet Archive's open catalog. Some can be borrowed free with an Open Library account.</dd>
+    <dt>OpenAlex</dt><dd>Journal articles, book chapters, and scholarly books, with citation counts and links to free copies. If OpenAlex is busy, Backstory uses <b>Crossref</b>, the DOI registry.</dd>
+    <dt>DOAJ</dt><dd>The Directory of Open Access Journals: articles anyone can read free.</dd>
+    <dt>Jev (TypeSafe AI)</dt><dd>When "Rank with Jev" is on, Jev reads each catalog entry and returns numbers: how related it is, its angle, its reading level, and whether it argues one side. Rules in this page turn those numbers into the ranking and the sentences you see. Jev doesn't write any text.</dd>
+    <dt>Gemini</dt><dd>Only if you choose to paste a packet into it. Backstory sends nothing to Gemini.</dd>
+  </dl>
+  <p class="hint">What leaves your browser: your search words go to the catalogs above, and short catalog entries plus the first part of what you brought in go to Jev through a proxy that stores nothing. Your folders, library, and notes stay in this browser.</p>
+  <p class="hint">Backstory is a Grove Lab student build. Idea and design direction by <b>Caitlin Hereford</b> (PPL and Rhetoric, Senior, WRIT 3810). Prototype built with Marc Watkins using Anthropic's Claude.</p>
+  <form method="dialog"><button class="btn">Close</button></form>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+<script src="js/terms.js"></script>
+<script src="js/sources.js"></script>
+<script src="js/jev.js"></script>
+<script src="js/rank.js"></script>
+<script src="js/guide.js"></script>
+<script src="js/library.js"></script>
+<script src="js/gemini.js"></script>
+<script src="js/upload.js"></script>
+<script src="js/search.js"></script>
+</body>
+</html>
